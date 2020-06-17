@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\POC.EmployeePayroll.Application\Poc.EmployeePayroll.Application.csproj" />
+    <ProjectReference Include="..\Poc.EmployeePayroll.Infrastructure\Poc.EmployeePayroll.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>

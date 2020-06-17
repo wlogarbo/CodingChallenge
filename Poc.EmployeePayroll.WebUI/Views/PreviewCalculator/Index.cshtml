@@ -1,0 +1,91 @@
+﻿@model Poc.EmployeePayroll.Domain.Entities.Person
+
+@{
+    ViewData["Title"] = "Preview Calculator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Preview Calculator</h1>
+
+<h4>Employee</h4>
+<hr />
+
+<form asp-action="Index" id="form">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label">First Name</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label">Last Name</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="PersonType" class="control-label">Person Type</label>
+                        <input asp-for="PersonType" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="dependentContainer">
+                        @{ await Html.RenderPartialAsync("_DependentList", Model); }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-10">
+                    <div id="calculationContainer">
+                        @{ await Html.RenderPartialAsync("_Calculation", Model); }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <div class="form-group">
+                <input type="button" id="btnCalculate" value="Calculate" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $("#btnCalculate").on('click', function () {
+        $.ajax({
+            async: true,
+            data: $('#form').serialize(),
+            type: "Post",
+            url: '/PreviewCalculator/Calculate',
+            success: function (partialview) {
+                $('#calculationContainer').html(partialview);
+            }
+        });
+    });
+</script>

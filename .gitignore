@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/POC.EmployeePayroll.Application/bin/Debug/netcoreapp3.1
+/.vs
+/Poc.EmployeePayroll.API/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.API/obj
+/POC.EmployeePayroll.Application/obj
+/Poc.EmployeePayroll.Application.UnitTests/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.Application.UnitTests/obj
+/Poc.EmployeePayroll.Domain/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.Domain/obj
+/Poc.EmployeePayroll.Domain.UnitTests/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.Domain.UnitTests/obj
+/Poc.EmployeePayroll.Infrastructure/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.Infrastructure/obj
+/Poc.EmployeePayroll.Infrastructure.UnitTests/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.Infrastructure.UnitTests/obj
+/Poc.EmployeePayroll.WebUI/bin/Debug/netcoreapp3.1
+/Poc.EmployeePayroll.WebUI/obj

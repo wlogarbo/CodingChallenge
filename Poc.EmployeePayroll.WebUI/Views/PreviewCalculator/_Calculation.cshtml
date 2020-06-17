@@ -1,0 +1,80 @@
+﻿@model Poc.EmployeePayroll.Domain.Entities.Person
+
+<p>
+    <h4>Preview Calculation</h4>
+</p>
+
+<div class="col-md-10">
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Salary): @Html.DisplayFor(model => model.Salary)
+        <br/>
+        @Html.DisplayNameFor(model => model.PayrollAmount): @Html.DisplayFor(model => model.PayrollAmount)
+    </div>
+</div>
+
+<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BenefitDeductionAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiscountAmount)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.PayrollAmount > 0)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PersonType)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.BenefitDeductionAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.DiscountAmount)
+                </td>
+            </tr>
+            }
+            @if (Model.Dependents != null && Model.Dependents.Count() > 0)
+            {
+                for (var i = 0; i < Model.Dependents.Count(); i++)
+                {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Dependents[i].FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Dependents[i].LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Dependents[i].PersonType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Dependents[i].BenefitDeductionAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Dependents[i].DiscountAmount)
+            </td>
+        </tr>
+                }
+            }
+        </tbody>
+    </table>

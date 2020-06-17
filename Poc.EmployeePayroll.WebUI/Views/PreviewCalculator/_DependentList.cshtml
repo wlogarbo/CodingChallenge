@@ -1,0 +1,74 @@
+﻿@model Poc.EmployeePayroll.Domain.Entities.Person
+
+<p>
+    <input type="button" id="btnAdd" value="Add Dependent" />
+</p>
+<table class="table" id="tblDependents" style="width:500px;table-layout:fixed;">
+    <thead>
+        <tr>
+            <th style="width:175px;">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th style="width:175px;">
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th style="width:150px;">
+                @Html.DisplayNameFor(model => model.PersonType)
+            </th>
+            <th style="width:50px"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Dependents != null)
+        {
+            for (var i = 0; i < Model.Dependents.Count(); i++)
+            {
+                <tr>
+                    <td style="width:175px;">
+                        @Html.TextBoxFor(modelItem => Model.Dependents[i].FirstName, new { @style = "width:150px" } )
+                    </td>
+                    <td style="width:175px;">
+                        @Html.TextBoxFor(modelItem => Model.Dependents[i].LastName, new { @style = "width:150px" })
+                    </td>
+                    <td style="width:150px;">
+                        @Html.DisplayFor(modelItem => Model.Dependents[i].PersonType)
+                        @Html.HiddenFor(modelitem => Model.Dependents[i].PersonType)
+                    </td>
+                    <td style="width:50px">
+                        <input type="button" id="btnDelete_@Model.Dependents[i].Id" value="Delete" onclick="deleteDependent('@Model.Dependents[i].Id');" />
+
+                        @Html.HiddenFor(modelitem => Model.Dependents[i].Id)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $("#btnAdd").on('click', function () {
+        $.ajax({
+            async: true,
+            data: $('#form').serialize(),
+            type: "Post",
+            url: '/PreviewCalculator/AddDependent',
+            success: function (partialview) {
+                $('#dependentContainer').html(partialview);
+            }
+        });
+    });
+
+    function deleteDependent (id) {
+        //var id = $(this).attr('id').slice(10);
+        $.ajax({
+            async: true,
+            data: $('#form').serialize(),
+            type: "Post",
+            url: '/PreviewCalculator/DeleteDependent/' + id,
+            success: function (partialview) {
+                $('#dependentContainer').html(partialview);
+            }
+        });
+    };
+</script>
